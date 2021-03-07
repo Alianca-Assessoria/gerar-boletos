@@ -114,7 +114,7 @@ const stream = fs.createWriteStream(`${dir}/${filename}.pdf`);
 
 carne.gerarCarne({
   creditos: '',
-  stream,
+  base64: true,
 });
 
 // novoBoleto.pdfFile()
