@@ -23,16 +23,14 @@ class validajson {
               agencia: '4367',
               agenciaDigito: '8',
               conta: '48855',
-              contaDigito: '0',
-            //   nossoNumero: '21',
-            //   nossoNumeroDigito: '2'
+              contaDigito: '0'
             },
             endereco: {
-                logradouro: 'Rua Pedro Lessa, 15',
-                bairro: 'Centro',
-                cidade: 'Rio de Janeiro',
-                estadoUF: 'RJ',
-                cep: '20030-030'
+                logradouro: 'QUADRA QNA 6 LOTE, 23, Sala 301',
+                bairro: 'Taguatinga Norte',
+                cidade: 'Brasília',
+                estadoUF: 'DF',
+                cep: '72110-060'
             }
         };
 
@@ -44,16 +42,14 @@ class validajson {
                 agencia: '01235',
                 agenciaDigito: '1',
                 conta: '0076428',
-                contaDigito: '0',
-                // nossoNumero: '00000000061',
-                // nossoNumeroDigito: '8'
+                contaDigito: '0'
             },
             endereco: {
-                logradouro: 'Rua Pedro Lessa, 15',
-                bairro: 'Centro',
-                cidade: 'Rio de Janeiro',
-                estadoUF: 'RJ',
-                cep: '20030-030'
+                logradouro: 'QUADRA QNA 6 LOTE, 23, Sala 301',
+                bairro: 'Taguatinga Norte',
+                cidade: 'Brasília',
+                estadoUF: 'DF',
+                cep: '72110-060'
             }
         };
 
@@ -67,14 +63,14 @@ class validajson {
             let boleto = {
                 banco: parcel.tipo === 'service' ? new Bancos.BancoBrasil() : new Bancos.Sicoob(),
                 pagador: {
-                    nome: json.cpf,
+                    nome: json.nome,
                     registroNacional: json.cpf,
                     endereco: {
-                    logradouro: 'Rua Pedro Lessa, 15',
-                    bairro: 'Centro',
-                    cidade: 'Rio de Janeiro',
-                    estadoUF: 'RJ',
-                    cep: '20030-030'
+                    logradouro: json.endereco.logradouro,
+                    bairro: json.endereco.bairro,
+                    cidade: json.endereco.cidade,
+                    estadoUF: json.endereco.uf,
+                    cep: json.endereco.cep
                     }
                 },
                 instrucoes: ['Parcela '+parcela+'/'+totalparcelas],

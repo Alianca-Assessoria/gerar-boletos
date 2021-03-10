@@ -44,13 +44,17 @@
     "node": ">=10.0.0"
   },
   "dependencies": {
+    "@banco-br/nodejs-cnab": "^0.2.0",
     "aws-sdk": "^2.858.0",
     "base64-stream": "^1.0.0",
     "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-access-token": "^1.1.1",
+    "i": "^0.3.6",
     "moment": "^2.29.1",
+    "node-cron": "^2.0.3",
+    "npm": "^7.6.1",
     "numero-por-extenso": "^1.0.8",
     "pdfkit": "0.10.0"
   },
