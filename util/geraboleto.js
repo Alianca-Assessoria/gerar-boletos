@@ -13,17 +13,7 @@ class gerareport {
         return (async (body, res) => {
             body = new validajson(body);
 
-            // const novoBoleto = new Boletos(boleto);
-            // novoBoleto.gerarBoleto();
-
             let carne = new GeradorDeBoletos(body);
-
-            //console.log (carne);
-
-
-            // if (!fs.existsSync(dir)) fs.mkdirSync(dir);
-            // const stream = fs.createWriteStream(`${dir}/${filename}.pdf`);
-
 
             await carne.gerarCarne({
             creditos: '',

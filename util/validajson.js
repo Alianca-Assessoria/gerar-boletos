@@ -61,7 +61,7 @@ class validajson {
         json.parcels.forEach(parcel => {
 
             let boleto = {
-                banco: parcel.tipo === 'service' ?  new Bancos.Sicoob() : new Bancos.BancoBrasil(),
+                banco: parcel.tipo === 'service' ? new Bancos.BancoBrasil() : new Bancos.Sicoob(),
                 pagador: {
                     nome: json.nome,
                     registroNacional: json.cpf,
@@ -80,9 +80,9 @@ class validajson {
                     especieDocumento: 'DM',
                     valor: parcel.valor,
                     datas: {
-                        vencimento: moment(parcel.data_vencimento, 'DD/MM/YYYY').format('DD-MM-YYYY'),
-                        processamento: moment().format('DD-MM-YYYY'),
-                        documentos: moment().format('DD-MM-YYYY')
+                        vencimento: moment(parcel.data_vencimento, 'DD/MM/YYYY').format('YYYY-MM-DD'),
+                        processamento: moment().format('YYYY-MM-DD'),
+                        documentos: moment().format('YYYY-MM-DD')
                     }
                 }
             };
@@ -95,6 +95,8 @@ class validajson {
                 boleto.beneficiario.dadosBancarios.nossoNumero = parcel.id;
                 boleto.beneficiario.dadosBancarios.nossoNumeroDigito = '0';
             }
+
+            //console.log(parcela);
             
 
             let boletoObj =  new Boletos(boleto);
