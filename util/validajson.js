@@ -61,7 +61,7 @@ class validajson {
         json.parcels.forEach(parcel => {
 
             let boleto = {
-                banco: parcel.tipo === 'service' ? new Bancos.BancoBrasil() : new Bancos.Sicoob(),
+                banco: parcel.tipo === 'service' ?  new Bancos.Sicoob() : new Bancos.BancoBrasil(),
                 pagador: {
                     nome: json.nome,
                     registroNacional: json.cpf,
