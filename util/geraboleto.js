@@ -21,6 +21,8 @@ class gerareport {
             }).then(
                 async function (result) {
 
+
+
                     let data = new Buffer.from(result, 'base64');
 
                     let upload = new s3upload();
@@ -30,6 +32,8 @@ class gerareport {
                     res.send({url: this.url});
                 }.bind(this),
                 function (error) {
+
+                    console.log(error);
 
                 }
             );

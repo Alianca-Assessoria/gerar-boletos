@@ -83,20 +83,23 @@ class validajson {
                         vencimento: moment(parcel.data_vencimento, 'DD/MM/YYYY').format('YYYY-MM-DD'),
                         processamento: moment().format('YYYY-MM-DD'),
                         documentos: moment().format('YYYY-MM-DD')
-                    }
+                    },
+                    locaisDePagamento: [
+                        'Pagável em qualquer banco'
+                    ]
                 }
             };
 
 
             if(parcel.tipo === 'service'){
-                boleto.beneficiario.dadosBancarios.nossoNumero = ('00000000000' + parcel.id).slice(-11);
+                boleto.beneficiario.dadosBancarios.nossoNumero = '3362315'+(('0000000000' + parcel.id).slice(-10));
                 //boleto.beneficiario.dadosBancarios.nossoNumeroDigito = '0';
             } else {
                 boleto.beneficiario.dadosBancarios.nossoNumero = parcel.id;
                 boleto.beneficiario.dadosBancarios.nossoNumeroDigito = '0';
             }
 
-            //console.log(parcela);
+            console.log(parcela);
             
 
             let boletoObj =  new Boletos(boleto);
