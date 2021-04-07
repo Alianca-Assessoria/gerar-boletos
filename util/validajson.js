@@ -1,5 +1,5 @@
 const { Bancos, Boletos } = require('../lib/index');
-const moment = require('moment');
+const moment = require('moment-timezone');
 
 class validajson {
 
@@ -61,7 +61,8 @@ class validajson {
         json.parcels.forEach(parcel => {
 
             let boleto = {
-                banco: parcel.tipo === 'service' ? new Bancos.BancoBrasil() : new Bancos.Sicoob(),
+                // Aqui vai a validação do tipo de boleto que será gerado
+                banco: parcel.tipo === 'service' ? new Bancos.BancoBrasil() : new Bancos.BancoBrasil(),
                 pagador: {
                     nome: json.nome,
                     registroNacional: json.cpf,
@@ -74,15 +75,16 @@ class validajson {
                     }
                 },
                 instrucoes: ['Parcela '+parcela+'/'+totalparcelas],
-                beneficiario: parcel.tipo === 'service' ? bb : sicoob ,
+                // Aqui vai a validação do tipo de boleto que será gerado
+                beneficiario: parcel.tipo === 'service' ? bb : bb ,
                 boleto: {
                     numeroDocumento: parcel.id,
                     especieDocumento: 'DM',
                     valor: parcel.valor,
                     datas: {
-                        vencimento: moment(parcel.data_vencimento, 'DD/MM/YYYY').format('YYYY-MM-DD'),
-                        processamento: moment().format('YYYY-MM-DD'),
-                        documentos: moment().format('YYYY-MM-DD')
+                        vencimento: moment(parcel.data_vencimento, 'DD/MM/YYYY').tz('America/Sao_Paulo').format('YYYY-MM-DD'),
+                        processamento: moment().tz('America/Sao_Paulo').format('YYYY-MM-DD'),
+                        documentos: moment().tz('America/Sao_Paulo').format('YYYY-MM-DD')
                     },
                     locaisDePagamento: [
                         'Pagável em qualquer banco'
