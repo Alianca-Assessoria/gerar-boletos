@@ -59,10 +59,11 @@ class validajson {
         let parcela = 1;
 
         json.parcels.forEach(parcel => {
-
+            //if(parcel.tipo === 'service'){
             let boleto = {
                 // Aqui vai a validação do tipo de boleto que será gerado
-                banco: parcel.tipo === 'service' ? new Bancos.BancoBrasil() : new Bancos.BancoBrasil(),
+                // banco: parcel.tipo === 'service' ? new Bancos.BancoBrasil() : new Bancos.BancoBrasil(),
+                banco: new Bancos.BancoBrasil(),
                 pagador: {
                     nome: json.nome,
                     registroNacional: json.cpf,
@@ -76,7 +77,8 @@ class validajson {
                 },
                 instrucoes: ['Parcela '+parcela+'/'+totalparcelas],
                 // Aqui vai a validação do tipo de boleto que será gerado
-                beneficiario: parcel.tipo === 'service' ? bb : bb ,
+                //beneficiario: parcel.tipo === 'service' ? bb : bb ,
+                beneficiario: bb,
                 boleto: {
                     numeroDocumento: parcel.id,
                     especieDocumento: 'DM',
@@ -93,15 +95,15 @@ class validajson {
             };
 
 
-            if(parcel.tipo === 'service'){
+           // if(parcel.tipo === 'service'){
                 boleto.beneficiario.dadosBancarios.nossoNumero = '3362315'+(('0000000000' + parcel.id).slice(-10));
                 //boleto.beneficiario.dadosBancarios.nossoNumeroDigito = '0';
-            } else {
-                boleto.beneficiario.dadosBancarios.nossoNumero = parcel.id;
-                boleto.beneficiario.dadosBancarios.nossoNumeroDigito = '0';
-            }
+            // } else {
+            //     boleto.beneficiario.dadosBancarios.nossoNumero = parcel.id;
+            //     boleto.beneficiario.dadosBancarios.nossoNumeroDigito = '0';
+            // }
 
-            console.log(parcela);
+            //console.log(parcela);
             
 
             let boletoObj =  new Boletos(boleto);
@@ -111,6 +113,7 @@ class validajson {
             boletos.push(boletoObj.boletoInfo);
 
             parcela++;
+       // }
 
         });
 
