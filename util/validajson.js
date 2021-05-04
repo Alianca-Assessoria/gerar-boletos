@@ -80,7 +80,7 @@ class validajson {
                 //beneficiario: parcel.tipo === 'service' ? bb : bb ,
                 beneficiario: bb,
                 boleto: {
-                    numeroDocumento: parcel.id,
+                    numeroDocumento: parcel.contract,
                     especieDocumento: 'DM',
                     valor: parcel.valor,
                     datas: {
@@ -96,7 +96,7 @@ class validajson {
 
 
            // if(parcel.tipo === 'service'){
-                boleto.beneficiario.dadosBancarios.nossoNumero = '3362315'+(('0000000000' + parcel.id).slice(-10));
+                boleto.beneficiario.dadosBancarios.nossoNumero = '3362315'+((''+parcel.id).padEnd(10, '0'));
                 //boleto.beneficiario.dadosBancarios.nossoNumeroDigito = '0';
             // } else {
             //     boleto.beneficiario.dadosBancarios.nossoNumero = parcel.id;
