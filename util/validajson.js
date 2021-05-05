@@ -34,6 +34,28 @@ class validajson {
             }
         };
 
+
+        let bbold = {
+            nome: 'ALIANCA ASSESSORIA DE CREDITO LTDA',
+            cnpj:'25276719000180',
+            dadosBancarios: {
+                carteira: '17',
+                agencia: '2895',
+                agenciaDigito: '19',
+                conta: '400723',
+                contaDigito: '9'
+            },
+            endereco: {
+                logradouro: 'QUADRA QNA 6 LOTE, 23, Sala 301',
+                bairro: 'Taguatinga Norte',
+                cidade: 'Brasília',
+                estadoUF: 'DF',
+                cep: '72110-060'
+            }
+        };
+
+
+
         let bb = {
             nome: 'ALIANCA QUITACAO E NEGOCIACAO DE DIVIDAS LTDA',
             cnpj:'38538685000105',
@@ -78,15 +100,15 @@ class validajson {
                 instrucoes: ['Parcela '+parcela+'/'+totalparcelas],
                 // Aqui vai a validação do tipo de boleto que será gerado
                 //beneficiario: parcel.tipo === 'service' ? bb : bb ,
-                beneficiario: bb,
+                beneficiario: parcel.importado == 1 ? bbold : bb,
                 boleto: {
                     numeroDocumento: parcel.contract,
                     especieDocumento: 'DM',
                     valor: parcel.valor,
                     datas: {
                         vencimento: moment(parcel.data_vencimento, 'DD/MM/YYYY').tz('America/Sao_Paulo').format('YYYY-MM-DD'),
-                        processamento: moment().tz('America/Sao_Paulo').format('YYYY-MM-DD'),
-                        documentos: moment().tz('America/Sao_Paulo').format('YYYY-MM-DD')
+                        processamento: parcel.importado == 1 ? moment(parcel.dataprocessamento).tz('America/Sao_Paulo').format('YYYY-MM-DD') : moment().tz('America/Sao_Paulo').format('YYYY-MM-DD'),
+                        documentos: parcel.importado == 1 ? moment(parcel.dataprocessamento).tz('America/Sao_Paulo').format('YYYY-MM-DD') : moment().tz('America/Sao_Paulo').format('YYYY-MM-DD')
                     },
                     locaisDePagamento: [
                         'Pagável em qualquer banco'
@@ -96,7 +118,13 @@ class validajson {
 
 
            // if(parcel.tipo === 'service'){
+
+            if(parcel.importado == 1){
+                boleto.beneficiario.dadosBancarios.nossoNumero = '2966443'+parcel.banknumber;
+            } else {
                 boleto.beneficiario.dadosBancarios.nossoNumero = '3362315'+((''+parcel.id).padEnd(10, '0'));
+            }
+            
                 //boleto.beneficiario.dadosBancarios.nossoNumeroDigito = '0';
             // } else {
             //     boleto.beneficiario.dadosBancarios.nossoNumero = parcel.id;

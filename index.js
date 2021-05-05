@@ -40,9 +40,9 @@ app.post('/generate',
   
         } catch(err) {
 
-        console.log(err);
-        res.sendStatus = 500;
-        res.send(err);
+          console.log(err);
+          res.sendStatus = 500;
+          res.send(err);
         }
 
     });
