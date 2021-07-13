@@ -13,6 +13,8 @@ class gerareport {
         return (async (body, res) => {
             body = new validajson(body);
 
+           // console.log(body);
+
             let carne = new GeradorDeBoletos(body);
 
             await carne.gerarCarne({
