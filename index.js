@@ -8,9 +8,12 @@ const moment = require('moment');
 const fs = require('fs');
 const cnab240 = require('nodejs-cnab240');
 
+const cors = require('cors');
+
 
 app.use(express.json());
 app.use(cookieParser());
+app.use(cors());
 
 /** Tokens de Acesso */
 const accessTokens = [
@@ -68,5 +71,5 @@ app.post('/generate',
 
     });
 
-const PORT = process.env.PORT || 8080
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => console.log(`Gerador de Documentos aberto na PORTA: ${PORT}`));
