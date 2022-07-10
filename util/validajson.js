@@ -100,7 +100,7 @@ class validajson {
                 instrucoes: ['Parcela '+parcel.numeroparcela+' relacionada à '+(parcel.tipo == 'service'? 'Prestação de Serviços' : (parcel.tipo == 'reduction' ? 'Parcelas Reduzidas': 'Confissão de Dividas')), parcel.observacoes ? parcel.observacoes : ''],
                 // Aqui vai a validação do tipo de boleto que será gerado
                 //beneficiario: parcel.tipo === 'service' ? bb : bb ,
-                beneficiario: parcel.importado == 1 ? bbold : bb,
+                beneficiario: (parcel.importado == 1 || parcel.parcel_nova_conta) ? bbold : bb,
                 boleto: {
                     numeroDocumento: parcel.contract,
                     especieDocumento: 'DM',
@@ -121,6 +121,8 @@ class validajson {
 
             if(parcel.importado == 1){
                 boleto.beneficiario.dadosBancarios.nossoNumero = '2966443'+parcel.banknumber;
+            } else if(parcel.parcel_nova_conta == 1) {
+                boleto.beneficiario.dadosBancarios.nossoNumero = '2966443'+((''+parcel.id).padEnd(10, '0'));
             } else {
                 boleto.beneficiario.dadosBancarios.nossoNumero = '3362315'+((''+parcel.id).padEnd(10, '0'));
             }
