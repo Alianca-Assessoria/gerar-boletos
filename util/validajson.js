@@ -121,7 +121,7 @@ class validajson {
 
             if(parcel.importado == 1){
                 boleto.beneficiario.dadosBancarios.nossoNumero = '2966443'+parcel.banknumber;
-            } else if(parcel.parcel_nova_conta == 1) {
+            } else if(parcel.parcel_nova_conta == true) {
                 boleto.beneficiario.dadosBancarios.nossoNumero = '2966443'+((''+parcel.id).padEnd(10, '0'));
             } else {
                 boleto.beneficiario.dadosBancarios.nossoNumero = '3362315'+((''+parcel.id).padEnd(10, '0'));
