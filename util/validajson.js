@@ -100,7 +100,7 @@ class validajson {
                 instrucoes: ['Parcela '+parcel.numeroparcela+' relacionada à '+(parcel.tipo == 'service'? 'Prestação de Serviços' : (parcel.tipo == 'reduction' ? 'Parcelas Reduzidas': 'Confissão de Dividas')), parcel.observacoes ? parcel.observacoes : ''],
                 // Aqui vai a validação do tipo de boleto que será gerado
                 //beneficiario: parcel.tipo === 'service' ? bb : bb ,
-                beneficiario: (parcel.importado == 1 || parcel.parcel_nova_conta) ? bbold : bb,
+                beneficiario: (parcel.importado == 1 || parcel.parcel_nova_conta == true) ? bbold : bb,
                 boleto: {
                     numeroDocumento: parcel.contract,
                     especieDocumento: 'DM',
