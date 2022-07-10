@@ -80,7 +80,12 @@ class validajson {
         let totalparcelas = json.parcels.length;
         let parcela = 1;
 
+
+
         json.parcels.forEach(parcel => {
+
+
+             console.log(parcel.parcel_nova_conta);
             //if(parcel.tipo === 'service'){
             let boleto = {
                 // Aqui vai a validação do tipo de boleto que será gerado
