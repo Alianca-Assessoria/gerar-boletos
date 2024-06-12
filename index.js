@@ -36,7 +36,7 @@ app.post('/generate',
         try {
 
           console.log(req.body);
-
+      
           let url = await new geraboleto(req.body, res) ;
 
           console.log(url);

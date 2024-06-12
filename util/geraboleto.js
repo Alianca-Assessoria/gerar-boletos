@@ -15,32 +15,38 @@ class gerareport {
 
            // console.log(body);
 
-            let carne = new GeradorDeBoletos(body);
+            if(body['parcels'].length == 1 && body['parcels'][0].id_asaas != null){
+               return 'https://www.asaas.com/b/pdf/'+body['parcels'][0].id_asaas.substring(4)
+            } else {
+                let carne = new GeradorDeBoletos(body);
 
-            await carne.gerarCarne({
-            creditos: '',
-            base64: true,
-            }).then(
-                async function (result) {
+                await carne.gerarCarne({
+                creditos: '',
+                base64: true,
+                }).then(
+                    async function (result) {
+    
+    
+    
+                        let data = new Buffer.from(result, 'base64');
+    
+                        let upload = new s3upload();
+                        this.url =  await upload.upload(data) ;
+                        
+                        
+                        res.send({url: this.url});
+                    }.bind(this),
+                    function (error) {
+    
+                        console.log(error);
+    
+                    }
+                );
+    
+                return this.url;
+            }
 
-
-
-                    let data = new Buffer.from(result, 'base64');
-
-                    let upload = new s3upload();
-                    this.url =  await upload.upload(data) ;
-                    
-                    
-                    res.send({url: this.url});
-                }.bind(this),
-                function (error) {
-
-                    console.log(error);
-
-                }
-            );
-
-            return this.url;
+            
 
         })(body, res);
 
