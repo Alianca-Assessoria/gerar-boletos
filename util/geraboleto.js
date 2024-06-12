@@ -11,13 +11,13 @@ class gerareport {
 
     constructor(body, res){
         return (async (body, res) => {
-            body = new validajson(body);
 
            // console.log(body);
 
             if(body['parcels'].length == 1 && body['parcels'][0].id_asaas != null){
                return 'https://www.asaas.com/b/pdf/'+body['parcels'][0].id_asaas.substring(4)
             } else {
+                body = new validajson(body);
                 let carne = new GeradorDeBoletos(body);
 
                 await carne.gerarCarne({
