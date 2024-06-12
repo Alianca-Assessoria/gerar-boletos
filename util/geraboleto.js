@@ -15,6 +15,9 @@ class gerareport {
            // console.log(body);
 
             if(body['parcels'].length == 1 && body['parcels'][0].id_asaas != null){
+
+                res.send({url:  'https://www.asaas.com/b/pdf/'+body['parcels'][0].id_asaas.substring(4)});
+            
                return 'https://www.asaas.com/b/pdf/'+body['parcels'][0].id_asaas.substring(4)
             } else {
                 body = new validajson(body);
